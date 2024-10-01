@@ -5,14 +5,6 @@ import { IoMdAdd } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 export default function App() {
-  const [fileName, setFileName] = useState('');
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setFileName(file.name);
-    }
-  };
 
   const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm({
     defaultValues: {
@@ -43,6 +35,15 @@ export default function App() {
       setValue("permanentStreet2", watch("residentialStreet2"));
     }
   };
+
+  // const [fileName, setFileName] = useState('');
+
+  // const handleFileChange = (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     setFileName(file.name);
+  //   }
+  // };
 
   return (
     <div className="container mx-auto p-6">
@@ -206,7 +207,7 @@ export default function App() {
                   <span className="text-red-500">*</span>
                 </label>
 
-                <div className="relative flex items-center">
+                {/* <div className="relative flex items-center">
                   <input
                     type="text"
                     value={fileName}
@@ -225,7 +226,15 @@ export default function App() {
                     onChange={handleFileChange}
                     className="hidden"
                   />
-                </div>
+                </div> */}
+
+                <input
+                  {...register(`documents[${index}].file`, { required: true })}
+                  type="file"
+                  accept=".pdf,image/*"
+                  className={`text-xs border rounded p-2 w-full md:w-auto flex-1 ${errors.documents?.[index]?.file ? "border-red-500" : "border-gray-300"}`}
+                />
+
               </div>
 
               <div className="flex items-end">
