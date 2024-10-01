@@ -12,6 +12,7 @@ export default function App() {
     watch,
     setValue,
     control,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -43,6 +44,7 @@ export default function App() {
   };
 
   async function handleFormSubmit(data) {
+    console.log(data);
 
     const formData = new FormData();
 
@@ -59,8 +61,6 @@ export default function App() {
     }
 
     data.documents.forEach((doc, index) => {
-      console.log(doc);
-
       formData.append(`documents[${index}][fileName]`, doc.fileName);
       formData.append(`documents[${index}][fileType]`, doc.fileType);
       formData.append(`documents[${index}][file]`, doc.file[0]);
@@ -73,8 +73,9 @@ export default function App() {
         },
       });
       console.log("Response:", response.data);
-    } catch (error) {
-      console.error("Error uploading documents:", error);
+      reset();
+    } catch (err) {
+      console.log(err);
     }
   };
 
