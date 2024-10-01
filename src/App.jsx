@@ -64,7 +64,8 @@ export default function App() {
           </div>
 
           <div className="w-full md:w-1/2 px-4 mb-4">
-            <label className="mb-1">Last Name<span className="text-red-500">*</span></label>
+            <label className="mb-1">Last Name
+              <span className="text-red-500">*</span></label>
             <input
               {...register("lastName", { required: "Last Name is required" })}
               type="text"
@@ -75,14 +76,15 @@ export default function App() {
           </div>
 
           <div className="w-full md:w-1/2 px-4 mb-4">
-            <label className="mb-1">Email<span className="text-red-500">*</span></label>
+            <label className="mb-1">Email
+              <span className="text-red-500">*</span></label>
             <input
               {...register("email", {
                 required: "Email is required",
-                pattern: {
-                  value: /^\S+@\S+$/i,
-                  message: "Invalid email format"
-                }
+                // pattern: {
+                //   value: /^\S+@\S+$/i,
+                //   message: "Invalid email format"
+                // }
               })}
               type="email"
               placeholder="ex: myname@example.com"
@@ -92,14 +94,15 @@ export default function App() {
           </div>
 
           <div className="w-full md:w-1/2 px-4 mb-4">
-            <label className="mb-1">Date Of Birth<span className="text-red-500">*</span></label>
+            <label className="mb-1">Date Of Birth
+              <span className="text-red-500">*</span></label>
             <input
               {...register("dateOfBirth", { required: "Date Of Birth is required" })}
               type="date"
               className={`border rounded p-2 w-full ${errors.dateOfBirth ? "border-red-500" : "border-gray-300"}`}
             />
             <p className="text-sm text-gray-400">&#40;Min. age should be 18 Years&#41;</p>
-            {errors.phoneNumber && <p className="text-red-500 text-sm">{errors.phoneNumber.message}</p>}
+            {errors.dateOfBirth && <p className="text-red-500 text-sm">{errors.dateOfBirth.message}</p>}
           </div>
         </div>
 
